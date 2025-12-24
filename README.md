@@ -6,7 +6,7 @@ Audio enhancement
 
 Lightweight project for training a simple time-only UNet-style beamformer.
 Key features:
-- Manual conditioning features (ILD/IPD/etc).
+- Manual conditioning features (ILD/IPD/etc) and learned features.
 - Dataset trims STFT frames so frames % (2**depth) == 0 (prevents decoder mismatches).
 - Model downsamples/upsamples only in time (frequency preserved).
 - No internal shape padding/cropping in the model — dataset is authoritative.
