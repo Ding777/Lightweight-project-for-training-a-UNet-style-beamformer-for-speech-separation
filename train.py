@@ -205,7 +205,7 @@ def main():
     if (args.features_destination != 'none'):
         feat_dim = cond_channel_count(M)
 
-    encoder = SimpleBeamformer(in_mics=M, embed_dim=args.embed_dim, base_ch=args.base_ch, depth=args.depth, feature_dim=feat_dim).to(device)
+    encoder = UnetBeamformer(in_mics=M, embed_dim=args.embed_dim, base_ch=args.base_ch, depth=args.depth, feature_dim=feat_dim).to(device)
     init_weights_xavier(encoder)
 
     opt = torch.optim.AdamW(list(encoder.parameters()), lr=args.lr, weight_decay=args.weight_decay)
