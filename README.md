@@ -33,7 +33,7 @@ python train.py \
   --n_fft 512 --hop 128 --sr 16000
 Run inference (uses checkpoint out/ckpt_best.pth if available):
 python infer.py --ckpt out/ckpt_best.pth --test_dir /path/to/test_folder --out_dir out/test_enh
-Notes
+##Notes
 
 The dataset will trim STFT frames to be divisible by 2**depth. If you prefer audio padding instead, modify paired_stft.py (option provided).
 
