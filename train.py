@@ -11,9 +11,10 @@ import torch.nn as nn
 import numpy as np
 from tqdm import tqdm
 
-from utils import find_pairs_in_dir, compute_mix_scale_from_multispec, si_sdr, init_weights_xavier, pad_collate_fn, make_cond_features_from_multispec, cond_channel_count
+from datasets.utils import find_pairs_in_dir, compute_mix_scale_from_multispec, si_sdr, init_weights_xavier, pad_collate_fn, make_cond_features_from_multispec, cond_channel_count
 from datasets.paired_stft import PairedSTFTDataset
 from models.unet_beamformer import UnetBeamformer
+
 
 def train_one_epoch(encoder, opt, loader, device, epoch, args, scheduler=None):
     encoder.train()
@@ -173,9 +174,9 @@ def main():
     device = torch.device('cpu') if args.device == 'cpu' else torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     os.makedirs(args.out_dir, exist_ok=True)
 
-    train_pairs, _ = find_pairs_in_dir(args.train_dir, recursive=True, verbose=True)
-    val_pairs, _ = find_pairs_in_dir(args.val_dir, recursive=True, verbose=True)
-    test_pairs, _ = find_pairs_in_dir(args.test_dir, recursive=True, verbose=True)
+    train_pairs = find_pairs_in_dir(args.train_dir)
+    val_pairs = find_pairs_in_dir(args.val_dir)
+    test_pairs = find_pairs_in_dir(args.test_dir)
     if len(train_pairs) == 0:
         raise RuntimeError("No train pairs found.")
     if len(test_pairs) == 0:
