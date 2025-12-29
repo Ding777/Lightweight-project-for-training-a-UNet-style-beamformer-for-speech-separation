@@ -25,84 +25,99 @@ def _longest_common_prefix_len(a: str, b: str) -> int:
             return i
     return L
 
-def find_pairs_in_dir(folder: str,
-                      audio_exts: Tuple[str, ...] = (".wav", ".flac", ".mp3"),
-                      mix_suffixes: Tuple[str, ...] = ("_mix", "_mixdown", "_mixwav", "_mic1", "_mic"),
-                      ref_suffixes: Tuple[str, ...] = ("_clean_ref", "_ref", "_clean", "_target", "_target_ref"),
-                      recursive: bool = True,
-                      fuzzy_threshold: float = 0.4,
-                      verbose: bool = False
-                      ) -> Tuple[List[Tuple[str, str]], Dict[str, List[str]]]:
+def find_pairs_in_dir(folder,
+                      audio_exts=(".wav", ".flac"),
+                      mix_mark="_mix",
+                      ref_suffixes=("_clean_ref", "_ref", "_clean", "_target", "_target_ref")):
+    """
+    Find (mix, ref) pairs by matching prefixes before known markers.
+    Works for names such as:
+       scene_000024_mix_multich.wav  <->  scene_000024_target_tile5_ch0.wav
+
+    Returns list of (mix_path, ref_path). Only pairs where a ref is found are returned.
+    """
+
     if folder is None or not os.path.isdir(folder):
-        if verbose:
-            print(f"[find_pairs] folder not found: {folder}")
-        return [], {"mix_map": {}, "ref_map": {}}
-    pattern = "**/*" if recursive else "*"
+        return []
+
+    # collect audio files
     files = []
     for ext in audio_exts:
-        files.extend(glob.glob(os.path.join(folder, pattern + ext), recursive=recursive))
-        files.extend(glob.glob(os.path.join(folder, pattern + ext.upper()), recursive=recursive))
+        files.extend(glob.glob(os.path.join(folder, f"*{ext}")))
     files = sorted(set(files))
-    mix_map = {}
-    ref_map = {}
-    lower_mix_suffixes = [s.lower() for s in mix_suffixes]
-    lower_ref_suffixes = [s.lower() for s in ref_suffixes]
+
+    mix_map = {}   # prefix -> mix_path
+    ref_map = {}   # prefix -> list of ref_paths
+
     for f in files:
         bname = os.path.basename(f)
         name_no_ext, _ = os.path.splitext(bname)
         lname = name_no_ext.lower()
-        matched = False
-        for s in lower_mix_suffixes:
-            if lname.endswith(s):
-                prefix = lname[:-len(s)]
-                mix_map.setdefault(prefix, []).append(f)
-                matched = True
-                break
-        if matched:
+
+        # --- detect mix by presence of the mix_mark ("_mix") anywhere in the name ---
+        if mix_mark in lname:
+            idx = lname.find(mix_mark)
+            prefix = lname[:idx]
+            # keep first mix deterministically
+            if prefix not in mix_map:
+                mix_map[prefix] = f
             continue
-        for s in lower_ref_suffixes:
-            if lname.endswith(s):
+
+        # --- detect explicit target tile pattern, prefer that ---
+        if "_target_tile" in lname:
+            idx = lname.find("_target_tile")
+            prefix = lname[:idx]
+            ref_map.setdefault(prefix, []).append(f)
+            continue
+
+        # --- generic ref suffixes (endswith) ---
+        matched = False
+        for s in ref_suffixes:
+            if lname.endswith(s.lower()):
                 prefix = lname[:-len(s)]
                 ref_map.setdefault(prefix, []).append(f)
                 matched = True
                 break
-    pairs = []
-    used_refs = set()
-    # exact matches
-    for prefix, mix_paths in mix_map.items():
-        if prefix in ref_map:
-            ref_candidates = ref_map[prefix]
-            for mix_path in mix_paths:
-                chosen_ref = None
-                for r in ref_candidates:
-                    if r not in used_refs:
-                        chosen_ref = r
-                        break
-                if chosen_ref is None:
-                    chosen_ref = ref_candidates[0]
-                pairs.append((mix_path, chosen_ref))
-                used_refs.add(chosen_ref)
-    # fuzzy match
-    for prefix, mix_paths in mix_map.items():
-        paired_already = any(any(pair[0] == mp for pair in pairs) for mp in mix_paths)
-        if paired_already:
+        if matched:
             continue
-        best_ref = None
-        best_score = 0.0
-        for rprefix, rpaths in ref_map.items():
-            lcp = _longest_common_prefix_len(prefix, rprefix)
-            score = lcp / max(1, min(len(prefix), len(rprefix)))
-            if score > best_score:
-                best_score = score
-                best_ref = rpaths[0]
-        if best_ref is not None and best_score >= fuzzy_threshold:
-            for mix_path in mix_paths:
-                pairs.append((mix_path, best_ref))
-                used_refs.add(best_ref)
-    pairs = sorted(pairs, key=lambda x: os.path.basename(x[0]).lower())
-    if verbose:
-        print(f"[find_pairs] found {len(pairs)} pairs in {folder}")
-    return pairs, {"mix_map": mix_map, "ref_map": ref_map}
+        # otherwise ignore unknown files
+
+    # Build pairs by matching prefixes. Prefer ref candidate with "_ch0" if present.
+    pairs = []
+    for prefix, mix_path in mix_map.items():
+        if prefix not in ref_map:
+            # fuzzy match
+            matched_ref = None
+            for rpref, rlist in ref_map.items():
+                if prefix in rpref or rpref in prefix:
+                    chosen = None
+                    for rp in rlist:
+                        if "_ch0" in os.path.basename(rp).lower():
+                            chosen = rp
+                            break
+                    if chosen is None and rlist:
+                        chosen = rlist[0]
+                    matched_ref = chosen
+                    break
+            if matched_ref is not None:
+                pairs.append((mix_path, matched_ref))
+        else:
+            # exact prefix match
+            candidates = ref_map[prefix]
+            chosen = None
+            for c in candidates:
+                if "_ch0" in os.path.basename(c).lower():
+                    chosen = c
+                    break
+            if chosen is None and candidates:
+                chosen = candidates[0]
+            if chosen:
+                pairs.append((mix_path, chosen))
+
+    # deterministic order
+    pairs = sorted(pairs, key=lambda x: os.path.basename(x[0]))
+    return pairs
+
 
 # -------------------------
 # STFT / ISTFT helpers
