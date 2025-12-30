@@ -11,6 +11,7 @@ Key features:
 - Dataset trims STFT frames so frames % (2**depth) == 0 (prevents decoder mismatches).
 - Model downsamples/upsamples only in time (frequency preserved).
 - No internal shape padding/cropping in the model — dataset is authoritative.
+- audio folder contain enhanced audio and compred with mvdr, you can acces each wav json file to know information about target/interference angle, snr, sir, rt60 etc 
 
 ## Install
 
