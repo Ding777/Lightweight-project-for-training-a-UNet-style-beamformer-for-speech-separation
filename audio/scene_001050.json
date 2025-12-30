@@ -1,0 +1,170 @@
+{
+  "scene_id": 1050,
+  "target_tile": 0,
+  "targets": [
+    {
+      "grid_index": 1,
+      "coord": [
+        0.0,
+        7.0,
+        1.2
+      ],
+      "az_deg": 138.81407483429035,
+      "el_deg": -18.709159412118264,
+      "speech": "D:\\workspace\\LibriSpeechSegments\\test-clean\\3980\\2830\\2830-3980-0054_seg000.flac"
+    }
+  ],
+  "interferers": [
+    {
+      "tile": 3,
+      "grid_index": 1,
+      "coord": [
+        6.0,
+        7.0,
+        1.2
+      ],
+      "az_deg": 60.25511870305778,
+      "el_deg": -24.061958229792584,
+      "speech": "D:\\workspace\\LibriSpeechSegments\\dev-clean\\244435\\6295\\6295-244435-0004_seg000.flac"
+    }
+  ],
+  "params": {
+    "n_targets": 1,
+    "n_interferers_from_tile": 1,
+    "interferer_tile": 3,
+    "R_target": 200,
+    "repeat": 50
+  },
+  "audio_meta": {
+    "mix_paths": [
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch0.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch1.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch2.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch3.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch4.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch5.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch6.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_ch7.wav"
+    ],
+    "mix_multich_path": "D:\\dataset_out_mod_0db\\audio\\scene_001050\\mix\\scene_001050_mix_multich.wav",
+    "target_paths": [
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch0.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch1.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch2.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch3.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch4.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch5.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch6.wav",
+      "D:\\dataset_out_mod_0db\\audio\\scene_001050\\targets\\tile_0\\scene_001050_target_tile0_ch7.wav"
+    ],
+    "tile_paths": {
+      "0": [
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch0.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch1.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch2.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch3.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch4.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch5.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch6.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_0\\scene_001050_tile0_ch7.wav"
+      ],
+      "1": [
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch0.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch1.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch2.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch3.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch4.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch5.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch6.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_1\\scene_001050_tile1_ch7.wav"
+      ],
+      "2": [
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch0.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch1.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch2.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch3.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch4.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch5.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch6.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_2\\scene_001050_tile2_ch7.wav"
+      ],
+      "3": [
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch0.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch1.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch2.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch3.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch4.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch5.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch6.wav",
+        "D:\\dataset_out_mod_0db\\audio\\scene_001050\\tiles\\tile_3\\scene_001050_tile3_ch7.wav"
+      ]
+    },
+    "n_mics": 8,
+    "rms_info": {
+      "mic0": {
+        "rms_full": 0.048250233321680235,
+        "rms_target": 0.025490451106043515,
+        "rms_interf": 0.04094682186123859
+      },
+      "mic1": {
+        "rms_full": 0.0468323980998615,
+        "rms_target": 0.025702363552496135,
+        "rms_interf": 0.039103270664805165
+      },
+      "mic2": {
+        "rms_full": 0.04855591237173667,
+        "rms_target": 0.0259801855567564,
+        "rms_interf": 0.04092668928699534
+      },
+      "mic3": {
+        "rms_full": 0.04708605678162671,
+        "rms_target": 0.02614041893559427,
+        "rms_interf": 0.039023297738178926
+      },
+      "mic4": {
+        "rms_full": 0.04856701416560968,
+        "rms_target": 0.026075341901872908,
+        "rms_interf": 0.04082318700901773
+      },
+      "mic5": {
+        "rms_full": 0.046827080701631774,
+        "rms_target": 0.02583693981204952,
+        "rms_interf": 0.03894310677242538
+      },
+      "mic6": {
+        "rms_full": 0.04822304371942087,
+        "rms_target": 0.02558752773114608,
+        "rms_interf": 0.04082221884672259
+      },
+      "mic7": {
+        "rms_full": 0.04656352680343178,
+        "rms_target": 0.025413710178767097,
+        "rms_interf": 0.038997960431061233
+      }
+    },
+    "noise_added": "D:\\musan\\noise-free-sound-0000.wav",
+    "SIR_db_requested": 1.0,
+    "noise_snr_db": 0.0,
+    "interference_conditions": {
+      "add_interf_outlier": false,
+      "interf_outlier_type": "spectral",
+      "interf_outlier_strength_db": 10.0,
+      "interf_outlier_prob": 1.0,
+      "interf_distance_mode": "unchanged",
+      "interf_near_distance": 0.8,
+      "interf_far_distance": 3.0,
+      "interf_randomize_angle": false,
+      "interf_outlier_scope": "all_mics",
+      "interf_outlier_mics_count": 1,
+      "interf_outlier_mic_list": null,
+      "applied_outliers": []
+    }
+  },
+  "repeat": 50,
+  "flat_files": {
+    "scene_json": "D:\\dataset_out_mod_0db\\all_scenes_flat\\scene_001050.json",
+    "mix": "D:\\dataset_out_mod_0db\\all_scenes_flat\\scene_001050_mix_multich.wav",
+    "target": "D:\\dataset_out_mod_0db\\all_scenes_flat\\scene_001050_target_tile0_ch0.wav",
+    "interf": "D:\\dataset_out_mod_0db\\all_scenes_flat\\scene_001050_interf_tile3_ch0.wav"
+  }
+}
