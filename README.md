@@ -1,11 +1,11 @@
-# Lightweight-project-for-training-a-UNet-style-beamformer-for-speech-separation
+# Project-for-training-a-UNet-style-beamformer-for-speech-separation
 Audio enhancement 
 
-A compact, easy-to-train system for single-target speech enhancement from multi-microphone recordings. The encoder-decoder is used by a small U-Net–style Beamformer that (1) consumes complex STFT inputs and preserves frequency resolution by down/up-sampling only across time frames, and (2) can optionally condition on simple hand-crafted features (per-channel real/imag, IPD, ILD, LPS). The decoder is projected directly to a 2-channel complex STFT with a final 1×1 convolution (self.outc), i.e. spectral = self.outc(x), producing the enhanced complex spectrum. Models are trained using STFT-domain MSE and/or waveform SI-SDR losses.
+An easy-to-train system for speech enhancement from multi-microphone recordings. The encoder-decoder is used by a U-Net–style Beamformer that (1) consumes complex STFT inputs and preserves frequency resolution by down/up-sampling only across time frames, and (2) can optionally condition on simple hand-crafted features (per-channel real/imag, IPD, ILD, LPS). The decoder is projected directly to a 2-channel complex STFT with a final 1×1 convolution (self.outc), i.e. spectral = self.outc(x), producing the enhanced complex spectrum. Models are trained using STFT-domain MSE and/or waveform SI-SDR losses.
 
 # Unet-Beamformer Project
 
-Lightweight project for training a simple time-only UNet-style beamformer.
+Project for training a UNet-style beamformer.
 Key features:
 - Manual conditioning features (ILD/IPD/etc) and learned features.
 - Dataset trims STFT frames so frames % (2**depth) == 0 (prevents decoder mismatches).
